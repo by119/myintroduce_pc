@@ -1,0 +1,708 @@
+/*头部导航栏*/
+#menu {
+    margin: 0;
+    padding-left: 10px;
+    position: fixed;
+    width: 100%;
+    min-width: 575px;
+    list-style-type: none;
+    z-index: 70;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+#menu li {
+    float: left;
+    margin: 0 10px 0 0;
+    height: 45px;
+}
+
+#menu a {
+    float: left;
+    padding: 10px 20px;
+    /*background-color: #fff;*/
+    color: #666;
+    font: 18px/25px "microsoft yahei";
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+#menu .active a {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: background-color 1s;
+}
+
+/*右侧导航栏*/
+#fp-nav {
+    position: fixed;
+    z-index: 100;
+    margin-top: -32px;
+    top: 50%;
+    opacity: 1;
+}
+
+#fp-nav.right {
+    right: 17px;
+}
+
+#fp-nav.left {
+    left: 17px;
+}
+
+#fp-nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+#fp-nav ul li {
+    display: block;
+    width: 14px;
+    height: 13px;
+    margin: 7px;
+    position: relative;
+}
+
+#fp-nav ul li a {
+    display: block;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#fp-nav ul li a.active span {
+    background: #333;
+}
+
+#fp-nav ul li a span {
+    top: 2px;
+    left: 2px;
+    width: 8px;
+    height: 8px;
+    border: 1px solid #000;
+    background: rgba(0, 0, 0, 0);
+    border-radius: 50%;
+    position: absolute;
+    z-index: 1;
+}
+
+#fp-nav ul li .fp-tooltip {
+    position: absolute;
+    top: -2px;
+    color: #fff;
+    font-size: 14px;
+    font-family: arial, helvetica, sans-serif;
+    white-space: nowrap;
+    max-width: 220px;
+    overflow: hidden;
+    display: block;
+    opacity: 0;
+    width: 0;
+}
+
+#fp-nav ul li:hover .fp-tooltip {
+    -webkit-transition: opacity 0.2s ease-in;
+    transition: opacity 0.2s ease-in;
+    width: auto;
+    opacity: 1;
+}
+
+#fp-nav ul li .fp-tooltip.right {
+    right: 20px;
+}
+
+#fp-nav ul li .fp-tooltip.left {
+    left: 20px;
+}
+
+.section {
+    position: relative;
+    overflow: hidden;
+}
+
+/*第一屏*/
+.first {
+    padding: 80px;
+    background-color: #fff;
+}
+
+/*我的照片*/
+.myphoto-box {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border-radius: 50%;
+    position: relative;
+}
+
+.first .myphoto-border {
+    border: 5px dotted rgba(255, 255, 255, 0.2);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    left: -5px;
+    top: -5px;
+}
+
+.first .myphoto {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+}
+
+.first .myphoto::before,
+.first .myphoto::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transition: transform 1s;
+    padding: 10px;
+    box-sizing: border-box;
+    background: url("../images/myphoto2.png") no-repeat;
+    backface-visibility: hidden;
+}
+
+.first .myphoto::before {
+    transform: rotateY(-180deg);
+}
+
+.first .myphoto::after {
+    background: url("../images/myphoto1.png") no-repeat;
+}
+
+.first .myphoto:hover::before {
+    transform: rotateY(0deg);
+}
+
+.first .myphoto:hover::after {
+    transform: rotateY(-180deg);
+}
+
+/*名言*/
+.first .famousremark {
+    width: 740px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.first .famousremark span {
+    width: 80px;
+    height: 100px;
+    margin: 0 15px;
+    position: relative;
+    color: #000;
+    opacity: 0;
+    font: 65px/80px "microsoft yahei";
+}
+
+.first .famousremark span::before,
+.first .famousremark span::after {
+    content: attr(data-famousremark);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    transition: transform 1s;
+    transform-origin: left;
+}
+
+.first .famousremark span::before {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.first .famousremark:hover span::before {
+    transform: scale(0.95, 1) skew(0deg, 10deg);
+}
+
+.first .famousremark:hover span::after {
+    transform: scale(0.7, 1) rotateY(-20deg);
+}
+
+/*警句*/
+.first .mot {
+    font: 700 40px/50px "simsun";
+    width: 740px;
+    margin: 0px auto;
+    text-align: center;
+}
+
+/*第一屏动画*/
+.first.current .myphoto-border {
+    animation: rotborder 15s linear infinite;
+}
+
+@keyframes rotborder {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.first.current .famousremark span {
+    margin: 0 10px;
+    opacity: 1;
+    transition: margin 1s, opacity 1s;
+}
+
+.first.current .mot {
+    transform: scale(0.8, 0.8);
+    opacity: 1;
+    transition: transform 1s, opacity 1s;
+}
+
+/*第二屏*/
+.second .fp-tableCell {
+    margin: 0 auto;
+}
+
+/*立方体*/
+.cube {
+    float: left;
+    margin: 200px;
+    margin-left: 210px;
+    margin-right: 90px;
+    width: 250px;
+    height: 250px;
+    transform-style: preserve-3d;
+    position: relative;
+    transform: rotateX(-20deg) rotateY(-20deg);
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: 900;
+    color: #fff;
+
+}
+.second.current .cube {
+    animation: rotcube 6s linear infinite alternate;
+}
+
+.second.current .cube:hover {
+    animation-play-state: paused;
+}
+
+.up, .down, .left, .right, .forword, .back {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.up, .down, .left, .right, .forword, .back p {
+    color: #333;
+    padding: 15px;
+    background-size: cover;
+    opacity: 0.9;
+}
+
+.up {
+    /*background-color: rgba(0, 0, 0, 0.5);*/
+    background: url(../images/up-key.jpg) no-repeat center;
+    transform: translateY(-50%) rotateX(90deg);
+    padding-top: 40px;
+}
+
+.down {
+    /*background-color: rgba(0, 0, 255, 0.5);*/
+    background: url(../images/down-key.png) no-repeat center;
+    transform: translateY(50%) rotateX(-90deg);
+    color: #fff;
+    padding: 35px;
+}
+
+.left {
+    /*background-color: rgba(0, 255, 0, 0.5);*/
+    background: url(../images/left-key.jpg) no-repeat center;
+    transform: translateX(-50%) rotateY(-90deg);
+    color: #111;
+    padding-top: 40px;
+}
+
+.right {
+    /*background-color: rgba(255, 255, 0, 0.5);*/
+    background: url(../images/right-key.png) no-repeat -49px 0px;
+    transform: translateX(50%) rotateY(-90deg) rotateX(180deg);
+    color: #fff;
+    padding-top: 40px;
+}
+
+.right p {
+    font-size: 50px;
+    margin-left: 20px;
+    transform: rotate(20deg);
+    transform-origin: top left;
+}
+
+.forword {
+    /*background-color: rgba(255, 0, 0, 0.5);*/
+    background: url(../images/forword-key.jpg) no-repeat center;
+    transform: translateZ(125px);
+}
+
+.forword p {
+    margin-top: 130px;
+    margin-right: 185px;
+    transform-origin: right top;
+    transform: rotate(-30deg);
+}
+
+.back {
+    /*background-color: rgba(0, 255, 255, 0.5);*/
+    background: url(../images/back-key.jpg) no-repeat center;
+    transform: translateZ(-125px) rotateX(180deg);
+    padding: 35px;
+
+}
+
+.myskill {
+    text-align: center;
+    text-align: justify;
+    float: left;
+    position: absolute;
+    top: 180px;
+    right: 180px;
+}
+
+.myskill h4 {
+    width: 65px;
+    line-height: 65px;
+    color: #bce8f1;
+    font-size: 60px;
+    float: right;
+}
+
+.myskill h4:hover {
+    animation: wordrot 1s;
+}
+
+.myskill ul {
+    float: right;
+    margin-right: 80px;
+}
+
+.myskill ul li {
+    color: #8c8c8c;
+    font-size: 28px;
+    line-height: 35px;
+    list-style: circle;
+    font-family: "MiCrosoft Yahei";
+}
+
+.myskill ul li:hover {
+    transform: scale(1, 1.2);
+}
+
+/*第二屏动画*/
+
+/*立方体动画*/
+@keyframes rotcube {
+    0% {
+        transform: rotateX(-20deg) rotateY(-20deg);
+    }
+    20% {
+        transform: rotateX(-90deg) rotateY(0deg);
+    }
+    40% {
+        transform: rotateX(0deg) rotateY(90deg);
+    }
+    60% {
+        transform: rotateX(90deg) rotateY(0deg);
+    }
+    80% {
+        transform: rotateX(-180deg) rotateY(0deg) rotateZ(0deg);
+    }
+    100% {
+        transform: rotateX(-180deg) rotateY(90deg) rotateZ(0deg);
+    }
+}
+
+@keyframes wordrot {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+/*第三屏*/
+.experience .exp-item {
+    position: relative;
+}
+
+.exp-item .tip1 {
+    position: absolute;
+    width: 227px;
+    left: 200px;
+    top: 190px;
+    transform-origin: center top;
+}
+.third.current .exp-item .tip1 {
+    animation: tiprot 2.5s infinite linear alternate;
+}
+.third.current .exp-item .tip1:hover {
+    animation-play-state: paused;
+}
+.third.current .exp-item #tip2:hover {
+    animation-play-state: paused;
+}
+.third.current .exp-item #tip3:hover {
+    animation-play-state: paused;
+}
+
+.exp-item #tip2 {
+    left: 500px;
+    top: 170px;
+}
+
+.exp-item #tip3 {
+    left: 800px;
+}
+.third.current .exp-item #tip2 {
+    animation: tiprot 3s infinite linear alternate;
+}
+
+.third.current .exp-item #tip3 {
+    animation: tiprot 3.5s infinite linear alternate;
+}
+
+
+.exp-item .tip1 .tip_h {
+    background: url(../images/tip1_h.gif) no-repeat left top;
+}
+
+.exp-item .tip1 .tip_h {
+    width: 227px;
+    padding-top: 45px;
+    height: 23px;
+    text-align: left;
+    cursor: move;
+}
+
+.exp-item .tip1 .tip_c {
+    background: url(../images/tip1_c.gif) repeat-y;
+}
+
+.exp-item .tip1 .tip_c {
+    width: 200px;
+    padding-left: 12px;
+    padding-right: 15px;
+    min-height: 40px;
+    text-align: left;
+    line-height: 20px;
+    max-height: 160px;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+}
+
+.exp-item .tip1 .tip_f {
+    background: url(../images/tip1_f.gif) no-repeat left top;
+}
+
+.exp-item .tip1 .tip_f {
+    width: 227px;
+    height: 53px;
+    padding-top: 20px;
+}
+
+.exp-item .icon {
+    float: left;
+    width: 35px;
+    padding-left: 15px;
+    height: 35px;
+    text-align: center;
+}
+
+.exp-item .name {
+    float: right;
+    padding-right: 15px;
+    text-align: right;
+    font-size: 12px;
+    line-height: 35px;
+    color: rgba(61, 20, 60, 0.95);
+}
+
+.third .fp-tableCell {
+    position: relative;
+}
+
+.third .exp-wave {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 185px;
+}
+
+.exp-wave::before,
+.exp-wave::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.5;
+    background: url("../images/wave1.png") no-repeat left top;
+}
+.exp-wave::after {
+    background-image: url("../images/wave2.png");
+}
+
+.third.current .exp-wave::before {
+    animation: waveupdown 2s infinite alternate;
+}
+.third.current .exp-wave::after {
+    animation: waveupdown 2s infinite alternate 0.2s;
+}
+.exp-wave .exp-fish-box {
+    width: 174px;
+    height: 126px;
+    transform-style: preserve-3d;
+    perspective: 200px;
+    margin-top: 100px;
+    transform: scale(0.5) rotateX(45deg);
+    animation: fishrun 20s infinite ease-in-out;
+}
+
+.exp-wave .exp-fish {
+    width: 100%;
+    height: 100%;
+    background: url("../images/fish8.png") no-repeat;
+    /**/
+    animation: fishmove 1s infinite steps(7);
+
+}
+/*雨丝*/
+.third .line span{
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    width: 2px;
+    height: 200px;
+    border-radius: 50% 50% 45% 45%;
+    transform-origin: top center;
+    transform: rotate(45deg);
+    background-color: #9da0a6;
+    transition: transform;
+    animation: starRain 1.5s infinite;
+}
+
+.third .line span:nth-child(2) {
+    height: 80px;
+    right: 250px;
+    animation: starRain 1.1s 0.5s infinite;
+}
+.third .line span:nth-child(3) {
+    height: 70px;
+    right: 400px;
+    top: -100px;
+    animation: starRain 1.2s 1.2s infinite;
+}
+
+/*第三屏动画*/
+@keyframes tiprot {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    50% {
+        transform: rotateZ(-20deg);
+    }
+    100% {
+        transform: rotateZ(20deg);
+    }
+}
+
+@keyframes waveupdown {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(50px);
+    }
+}
+
+@keyframes fishmove {
+    0% {
+        background-position: left top;
+    }
+    100% {
+        background-position: left -882px;
+    }
+}
+
+@keyframes fishrun {
+    0% {
+        transform: scale(0.5) rotateX(50deg) translateX(-600px);
+    }
+    100% {
+        transform: scale(0.5) rotateX(50deg) translateX(2500px);
+    }
+}
+
+@keyframes starRain {
+    0%{
+       transform: rotate(45deg) translateY(-100%);
+    }
+    100%{
+        transform: rotate(45deg) translateY(1500px);
+    }
+}
+
+
+/*第四屏*/
+.fourth {
+
+}
+
+.fourth .mycase {
+
+    margin: 200px 20px;
+    position: relative;
+}
+.mycase .case-item {
+    float: left;
+}
+.mycase .case-item img {
+     width: 530px;
+    float: left;
+}
+.mycase .case-item:nth-child(2) img {
+     width: 200px;
+    float: left;
+    margin: -15px 15px;
+}
+
+.case-item-introduce {
+    width: 500px;
+    margin: 0px auto;
+    border-radius: 7px;
+    padding: 15px 20px;
+    background-color: rgba(32, 79, 186, 0.7);
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translate(-50%);
+    display: none;
+}
+.case-item-introduce .introduce p {
+    text-indent: 2em;
+    font-size: 18px;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 1);
+}
+
